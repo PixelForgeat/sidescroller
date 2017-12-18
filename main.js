@@ -4,7 +4,7 @@ const path = require("path");
 const{app,BrowserWindow,Menu} = electron;
 
 global.mainWindow;
-global.scaler;  //Resolution Scaler als Global Variable
+global.scaler = 1;  //Resolution Scaler als Global Variable
 
 //process.env.NODE_ENV = 'production';      //Wenn nicht Auskommentiert werden die Devtools deaktiviert
 
