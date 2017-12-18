@@ -10,8 +10,8 @@ global.scaler = 1;  //Resolution Scaler als Global Variable
 
 app.on('ready',function(){
     mainWindow = new BrowserWindow({    // Neues Window erstellt
-        width:700*scaler,
-        height:600*scaler,
+        width:1920*scaler,
+        height:1080*scaler,
         resizable:false,
         //frame:false
     });
@@ -41,14 +41,14 @@ const mainMenuTemplate = [{     // Menü Konstruktorfunktion
     label:'Resulotion',
     submenu:[
         {
-            label:'700x600',
+            label:'1080x720',
             click(){
-                scaler=2/2;
+                scaler=0,5625;
             }
         },{
-            label:'1050x900',
+            label:'1920x1080',
             click(){
-                scaler=3/2;
+                scaler=2/2;
             }
         }
     ]
