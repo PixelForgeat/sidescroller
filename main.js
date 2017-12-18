@@ -4,24 +4,25 @@ const path = require("path");
 const{app,BrowserWindow,Menu} = electron;
 
 global.mainWindow;
+global.scaler;  //Resolution Scaler als Global Variable
 
-//process.env.NODE_ENV = 'production';
+//process.env.NODE_ENV = 'production';      //Wenn nicht Auskommentiert werden die Devtools deaktiviert
 
 app.on('ready',function(){
-    mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({    // Neues Window erstellt
         width:700*scaler,
         height:600*scaler,
         resizable:false,
         //frame:false
     });
-    mainWindow.loadURL(url.format({
+    mainWindow.loadURL(url.format({    // Umleitung zu dem Inhalt des mainWindows
         pathname: path.join(__dirname,"index.html"),
         protocol:"file",
         slashes: true
     }));
-    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);  //Menü wird gebaut
     Menu.setApplicationMenu(mainMenu);
-    mainWindow.on('close', function () { 
+    mainWindow.on('close', function () {      // Schließt den Prozess wenn das mainWindow geschlossen wird
         mainWindow = null;
         app.quit();
     })
@@ -31,29 +32,12 @@ app.on('ready',function(){
 
 
 
-app.on('will-quit', () => {
+app.on('will-quit', () => {    //Löscht Shortcuts beim Beenden der App
     globalShortcut.unregisterAll();
     log.info("will-quit: Global Shortcut Status: " + globalShortcut.isRegistered('CommandOrControl+L'));
 });
 
-let addwindow;
-
-function createAddWindow(){
-    addwindow = new BrowserWindow({
-        width: 200,
-        height:300,
-        title: "kompleter pfusch"
-    });
-    addwindow.loadURL(url.format({
-        pathname: path.join(__dirname,"index.html"),
-        protocol:"file",
-        slashes: true
-    }));
-    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-    Menu.setApplicationMenu(mainMenu);
-}
-
-const mainMenuTemplate = [{
+const mainMenuTemplate = [{     // Menü Konstruktorfunktion
     label:'Resulotion',
     submenu:[
         {
@@ -70,7 +54,7 @@ const mainMenuTemplate = [{
     ]
 }];
 
-if(process.env.NODE_ENV !== 'production')
+if(process.env.NODE_ENV !== 'production')    // Devtools
 {
     mainMenuTemplate.push(
         {
