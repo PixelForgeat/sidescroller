@@ -1,12 +1,12 @@
 function Gameobject(shape="rect",x=0,y=0,width = 50,height = 50,cohlor = {r:0,g:0,b:0,a:255},options = { collider:false,rigidbody:false }/* options ist ein Objekt das optional mit Zusätlichen optionalen Einzeilinformationen gefüllt werden kann */){
-    this.pos=new createVector(x,y);
-    this.rigidbody= options.rigidbody;
-    this.collider= options.collider;
-    this.shape=shape;
-    this.color=cohlor;
-    this.size=new createVector(width,height);
+    this.pos=new createVector(x,y); //positionvector
+    this.rigidbody= options.rigidbody; // rigidbody bool
+    this.collider= options.collider; //Collider bool
+    this.shape=shape; //Shapestring
+    this.color=cohlor; //Colorobject
+    this.size=new createVector(width,height); // Sizevector
 
-    this.show = function(){
+    this.show = function(){ // Gameobject Renderfunction
         noStroke();
         fill(this.color.r,this.color.g,this.color.b,this.color.a);
         if(shape=="rect")
@@ -61,13 +61,6 @@ function Gameobject(shape="rect",x=0,y=0,width = 50,height = 50,cohlor = {r:0,g:
             }
     }
 
-
-
-
-
-
-
-
     if(!this.rigidbody){            // Schiebt das Object in die richtige Arrayreihe je nach übergebenen Optionen bzw standartwerten
         gameobjects[0].push(this);  // Statisches Object(Ohne Rigidbody)
     }else{
@@ -78,9 +71,9 @@ function Gameobject(shape="rect",x=0,y=0,width = 50,height = 50,cohlor = {r:0,g:
     }
 }
 
-let gameobjects = []; //Object Sammlung 1Dim Rigidbody 2Dim ohne Rigidbody 3Dim Pointer auf Objects mit Collider 
+let gameobjects = []; //Object Sammlung 1ROW Rigidbody 2ROW ohne Rigidbody 3ROW Pointer auf Objects mit Collider 
 
 for(let i = 0;i < 3;i++)
 {
-    gameobjects[i] = [];
+    gameobjects[i] = []; //2Dimensionales Array initialisieren 
 }
