@@ -5,17 +5,18 @@ function Gameobject(shape="rect",x=0,y=0,width = 50,height = 50,cohlor = {r:0,g:
     this.shape=shape; //Shapestring
     this.color=cohlor; //Colorobject
     this.size=new createVector(width,height); // Sizevector
+    this.remote = require('electron').remote;// Global Scaler von Electron
 
     this.show = function(){ // Gameobject Renderfunction
         noStroke();
         fill(this.color.r,this.color.g,this.color.b,this.color.a);
         if(shape=="rect")
         {
-            rect(this.pos.x-(this.size.x/2),this.pos.y-(this.size.y/2),this.size.x,this.size.y);
+            rect((this.pos.x-(this.size.x/2))*this.remote.getGlobal('scaler'),(this.pos.y-(this.size.y/2))*this.remote.getGlobal('scaler'),this.size.x*this.remote.getGlobal('scaler'),this.size.y*this.remote.getGlobal('scaler'));
         }
         if(shape=="ellipse")
         {
-            ellipse(this.pos.x,this.pos.y,this.size.x,this.size.y);
+            ellipse(this.pos.x*this.remote.getGlobal('scaler'),this.pos.y*this.remote.getGlobal('scaler'),this.size.x*this.remote.getGlobal('scaler'),this.size.y*this.remote.getGlobal('scaler'));
         }
     }
     this.addrigidbody = function() {//Rigidbody hinzufügen
