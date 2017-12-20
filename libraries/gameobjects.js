@@ -5,6 +5,7 @@ function Gameobject(shape="rect",x=0,y=0,width = 50,height = 50,cohlor = {r:0,g:
     this.shape=shape; //Shapestring
     this.color=cohlor; //Colorobject
     this.size=new createVector(width,height); // Sizevector
+    this.vx,vy=0;
 
     this.show = function(){ // Gameobject Renderfunction
         noStroke();
