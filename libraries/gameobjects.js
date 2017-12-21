@@ -5,7 +5,11 @@ function Gameobject(shape="rect",x=0,y=0,width = 50,height = 50,cohlor = {r:0,g:
     this.shape=shape; //Shapestring
     this.color=cohlor; //Colorobject
     this.size=new createVector(width,height); // Sizevector
+<<<<<<< HEAD
     this.remote = require('electron').remote;// Global Scaler von Electron
+=======
+    this.vx,vy=0;
+>>>>>>> e577784a047a0cc27ee22a6f8f458f50d87145c8
 
     this.show = function(){ // Gameobject Renderfunction
         noStroke();
